@@ -5,11 +5,11 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://docs.opendata.studio",
+  site: "https://docs.datastudioapp.com",
 
   integrations: [
     starlight({
-      title: "opendata.studio docs",
+      title: "DataStudio docs",
       customCss: ["./src/styles/custom.css"],
       logo: {
         light: "./src/assets/logo.svg",
@@ -19,7 +19,7 @@ export default defineConfig({
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/opendatastudio/docs",
+          href: "https://github.com/datastudioapp/docs",
         },
       ],
       sidebar: [
