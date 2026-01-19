@@ -25,7 +25,7 @@ These elements are defined by individual components inside each datakit:
 
 These elements form a complete description of a data analysis that can be
 executed through our web interface or
-[command line tool](https://github.com/datastudioapp/cli). Each execution is
+[command line tool](https://github.com/datastudioapp/datastudio-cli). Each execution is
 tracked, creating a reproducible record of the analysis process. Once an
 analysis is completed, the results and process can be easily shared or
 published, ensuring transparency and allowing others to build upon your work.
