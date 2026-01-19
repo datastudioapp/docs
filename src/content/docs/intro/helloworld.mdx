@@ -22,7 +22,14 @@ First, we need to install the [datastudio-cli](https://pypi.org/project/datastud
 tool.
 
 ```bash
-python --version  # Ensure you have a Python version >= 3.11 installed
+# Ensure you have Python version >= 3.11 installed
+python --version
+
+# Create a virtual environment to work in
+python -m venv .venv  # Create a virtual environment to work in
+source .venv/bin/activate
+
+# Install datastudio-cli
 pip install datastudio-cli
 ```
 
