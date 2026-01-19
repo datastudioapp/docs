@@ -27,10 +27,10 @@ pip install datakitcli
 ```
 
 If everything is working, you should see the following output followed by a help
-message when you type `dk`:
+message when you type `ds`:
 
 ```bash
-# Usage: dk [OPTIONS] COMMAND [ARGS]...
+# Usage: ds [OPTIONS] COMMAND [ARGS]...
 # ...
 ```
 
@@ -47,11 +47,11 @@ cd python-run-base
 
 ## Creating a new datakit
 
-Let's create a new datakit. The `dk` CLI tool provides a convenient command to
+Let's create a new datakit. The `ds` CLI tool provides a convenient command to
 do this:
 
 ```bash
-dk new helloworld
+ds new helloworld
 ```
 
 This will create a new datakit inside a directory called `helloworld-datakit`.
@@ -76,7 +76,7 @@ Let's run your new datakit. First, initialise the default run:
 
 ```bash
 cd helloworld-datakit
-dk init
+ds init
 ```
 
 This will create a directory called `helloworld.run` in the root of your datakit
@@ -100,24 +100,24 @@ By default, the input variable `x` is set to the default value specified in
 `algorithm.json`. You can set the value of `x` to something else if you'd like:
 
 ```bash
-dk set x 9001
+ds set x 9001
 ```
 
 Now we can execute the run:
 
 ```bash
-dk run
+ds run
 ```
 
 And view the result:
 
 ```bash
-dk show x
+ds show x
 # ╭─ x ─╮
 # │ 42  │
 # ╰─────╯
 
-dk show result
+ds show result
 # ╭─ result ─╮
 # │ 84       │
 # ╰──────────╯
@@ -210,19 +210,19 @@ Save and close `helloworld/algorithm.json`. We will need to initialise the
 datakit again to add this new variable to the run configuration:
 
 ```bash
-dk reset  # This deletes any existing runs
-dk init
+ds reset  # This deletes any existing runs
+ds init
 ```
 
 Now we can set and view the new input variable value:
 
 ```bash
-dk show y
+ds show y
 # ╭─ y ─╮
 # │ 100 │
 # ╰─────╯
 
-dk set y 200
+ds set y 200
 # ╭─ y ─╮
 # │ 200 │
 # ╰─────╯
@@ -243,9 +243,9 @@ def main(x, y):
 Now we're ready to execute:
 
 ```bash
-dk run
+ds run
 
-dk show result
+ds show result
 # ╭─ result ─╮
 # │ 242      │
 # ╰──────────╯
