@@ -46,7 +46,7 @@ configuration:
   "description": "A simple model fitting algorithm demonstrating relationships",
   "profile": "datakit-algorithm",
   "code": "algorithm.py",
-  "container": "datastudio/python-run-base:latest",
+  "container": "datastudioapp/python-run-base:latest",
   "signature": {
     "inputs": [
       {
@@ -193,6 +193,12 @@ def main(data: pd.DataFrame, model: str, inputParams: pd.DataFrame) -> Output:
 
 Let's go through this section-by-section:
 
+First, we define the fit model functions. These are the functions we will be
+fitting to our data. They take the format expected by the scipy
+[`curve_fit`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html)
+function - a list of x values as the first argument, and then each individual
+fit parameter as a separate argument.
+
 ```python title="modelfit/algorithm.py"
 # Fit model functions
 
@@ -207,11 +213,8 @@ def quadratic(x, a, b, c):
     return a * x**2 + b * x + c
 ```
 
-First, we define the fit model functions. These are the functions we will be
-fitting to our data. They take the format expected by the scipy
-[`curve_fit`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html)
-function - a list of x values as the first argument, and then each individual
-fit parameter as a separate argument.
+Next, we define the main algorithm function, which will be executed when the
+algorithm runs:
 
 ```python title="modelfit/algorithm.py"
 def main(data: pd.DataFrame, model: str, inputParams: pd.DataFrame) -> Output:
@@ -224,9 +227,6 @@ def main(data: pd.DataFrame, model: str, inputParams: pd.DataFrame) -> Output:
         p0=inputParams["init"],
     )
 ```
-
-Next, we define the main algorithm function, which will be executed when the
-algorithm runs.
 
 Here we use the scipy
 [`curve_fit`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html)
@@ -242,6 +242,9 @@ defined above when the algorithm is run.
 And `p0` is an array of initial parameter guesses that are passed in via the
 `inputParams` resource.
 
+Next, we do some data munging to transform the output of `curve_fit` into the
+tabular format that our `outputParams` resource expects:
+
 ```python title="modelfit/algorithm.py"
     # Transform curve_fit output into expected output table format
     names = ["a", "b", "c"]
@@ -252,8 +255,9 @@ And `p0` is an array of initial parameter guesses that are passed in via the
     )
 ```
 
-Next, we do some data munging to transform the output of `curve_fit` into the
-tabular format that our `outputParams` resource expects.
+And finally, we calculate the fit curve using the parameters returned by
+`curve_fit`, and return our output data as per the outputs defined in the
+algorithm configuration:
 
 ```python title="modelfit/algorithm.py"
     # Calculate the optimised fit curve
@@ -265,10 +269,6 @@ tabular format that our `outputParams` resource expects.
         "fit": fit,
     }
 ```
-
-And finally, we calculate the fit curve using the parameters returned by
-`curve_fit`, and return our output data as per the outputs defined in the
-algorithm configuration.
 
 ## Creating resources
 
