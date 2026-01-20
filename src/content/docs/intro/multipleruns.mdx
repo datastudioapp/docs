@@ -189,12 +189,13 @@ previous result. To do this, we can create a new named run:
 ds init helloworld.mean
 ```
 
-Now we can load our input data, and set the function we want to use to calculate
-the result:
+Now we can load our input data, set the function we want to use to calculate
+the result, and run the datakit again:
 
 ```bash
 ds load data data/tabulardata.csv
 ds set function "mean"
+ds run
 ```
 
 Your result should look like:
