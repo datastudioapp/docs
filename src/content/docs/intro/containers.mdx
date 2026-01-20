@@ -6,9 +6,9 @@ description: Using custom Docker containers with datakits
 import { FileTree } from "@astrojs/starlight/components";
 import { Aside } from "@astrojs/starlight/components";
 
-By default, algorithms in a datakit run in the python-run-base Docker container,
+By default, algorithms in a datakit are executed in the [`python-run-base`](https://github.com/datastudioapp/python-run-base) Docker container,
 which provides commonly used libraries such as `numpy` and `pandas`. If you need
-a library not included in this default container, you can easily create a custom
+a library not included in this default container, you can easily extend it and create a custom
 Docker container to run your algorithm.
 
 ## Creating a custom Docker container
@@ -25,7 +25,7 @@ touch helloworld/container/Dockerfile
 Inside the Dockerfile, write the following container definition:
 
 ```docker title="helloworld/container/Dockerfile"
-FROM datastudio/python-run-base:latest
+FROM datastudioapp/python-run-base:latest
 
 RUN pip install scikit-learn
 ```
@@ -38,7 +38,8 @@ This container definition uses `python-run-base` as the base image and installs
 Now you can build the custom Docker container by running:
 
 ```bash
-docker build -t mycontainer.
+cd helloworld/container
+docker build -t mycontainer .
 ```
 
 This command creates your new container with the tag `mycontainer`.
