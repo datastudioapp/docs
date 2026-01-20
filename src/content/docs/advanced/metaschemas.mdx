@@ -93,7 +93,7 @@ specify it in the algorithm configuration.
 
 Edit `tabulardata/algorithm.json`:
 
-```json title="tabulardata/algorithm.json" ins={16-18,22}
+```json title="tabulardata/algorithm.json" ins={16,20}
 {
   "name": "tabulardata",
   "title": "Time series average",
@@ -176,7 +176,7 @@ Initialise and load it into our algorithm:
 
 ```bash
 ds reset  # Remember to reset to remove any previous runs of our algorithm
-ds init
+ds init tabulardata
 ds load data data/tabulardata2.csv
 ```
 
