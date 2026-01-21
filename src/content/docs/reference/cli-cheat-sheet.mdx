@@ -1,0 +1,32 @@
+---
+title: CLI cheat sheet
+description: Overview of some useful datakit CLI commands
+---
+
+### State management
+
+| Command                        | Description                                                                                                                                          |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ds init [OPTIONAL: RUN NAME]` | Initialises the datakit run directory. If no run name is specified, it will initialise a default run for the first algorithm listed in datakit.json. |
+| `ds reset`                     | Removes all previously created run directories. Resets the datakit to a clean, pre-run state.                                                        |
+| `ds new [DATAKIT NAME] `       | Creates a new datakit in a folder at the root of the current directory with the name `[DATAKIT NAME]-datakit`.                                       |
+
+### Variables
+
+| Command                                       | Description                                                   |
+| --------------------------------------------- | ------------------------------------------------------------- |
+| `ds set [VARIABLE NAME] [VALUE]`              | Sets the value of the chosen variable to the specified value. |
+| `ds show [VARIABLE NAME]`                     | Prints the current value of the chosen variable.              |
+| `ds load [VARIABLE NAME] [/path/to/data.csv]` | Loads tabular data from a CSV file into the chosen variable.  |
+
+### Execution
+
+| Command  | Description                                          |
+| -------- | ---------------------------------------------------- |
+| `ds run` | Executes the algorithm for the currently active run. |
+
+### Views
+
+| Command               | Description              |
+| --------------------- | ------------------------ |
+| `ds view [VIEW NAME]` | Renders the chosen view. |
